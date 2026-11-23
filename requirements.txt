@@ -1,0 +1,51 @@
+# requirements.txt — simulations/JASA_simple
+#
+# Main environment for the screening / f2ves / final_experiments pipeline
+# (data_generators_*.py, screening_methods*.py, final_experiments_*.py,
+#  f2ves_*.py, tabicl_shap_*.py, tabicl_downstream.py, merge_*.py).
+#
+# Python 3.10 (CPython 3.10.x). Install with a CUDA 12.8 build of torch:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+# then:
+#   pip install -r requirements.txt
+#
+# NOTE on tabpfn versions:
+#   The main pipeline pins tabpfn==8.4.0 (used by screening_methods and tabicl).
+#   Two standalone evaluators run in SEPARATE virtualenvs and are NOT satisfied
+#   by this file — install them independently:
+#     * eval_tabpfnwide.py  -> venv_tabpfnwide  with tabpfn==8.0.3 + local
+#       package TabPFN-Wide-main/  (pip install -e TabPFN-Wide-main/)
+#     * eval_gotabpfn.py    -> venv_gotabpfn    with tabpfn==6.3.1 + local
+#       package GOTabPFN-main/    (pip install -e GOTabPFN-main/)
+#   See the docstring headers of those eval files for activation instructions.
+
+# --- Numerical / data ---
+numpy>=2.0,<3.0
+scipy>=1.11
+pandas>=2.0
+scikit-learn>=1.3
+
+# --- Deep learning (install CUDA wheel first, see header) ---
+torch>=2.7
+
+# --- Tabular foundation models ---
+tabpfn==8.4.0          # main pipeline; tabpfnwide/gotabpfn need other versions in separate venvs
+tabicl>=2.1
+
+# --- Gradient- boosting baselines ---
+xgboost>=2.0
+lightgbm>=4.0
+catboost>=1.2
+
+# --- Feature attribution / SHAP ---
+shap>=0.45
+shapiq>=1.3
+
+# --- Hyperparameter search & parallelism ---
+optuna>=3.5
+joblib>=1.3
+
+# --- Diagnostics / plotting / utils ---
+psutil>=5.9
+matplotlib>=3.7
+tqdm>=4.64
