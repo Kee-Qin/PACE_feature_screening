@@ -1,5 +1,7 @@
 # PACE experiments
 
+Official code for *PACE: Plug-and-Play Contextual Embedding for Feature Screening with Pretrained Tabular Foundation Models*, arxiv:2609.23574
+
 The repository root contains experiment entry points. Shared screening algorithms,
 representations, data generators, and path configuration live in `src/`.
 
